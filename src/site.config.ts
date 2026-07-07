@@ -12,3 +12,19 @@ export const SITE = {
     { icon: "calendar", label: "joined" },
   ],
 };
+
+const ICONS: Record<string, string> = {
+  数学: "sigma",
+  応用数理: "square-function",
+  計算機科学: "cpu",
+};
+
+export function iconFor(tags: string[]): string {
+  for (const tag of tags) {
+    const icon = ICONS[tag];
+    if (icon) {
+      return icon;
+    }
+  }
+  return "file-text";
+}

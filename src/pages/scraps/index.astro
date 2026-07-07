@@ -1,19 +1,21 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import EntryList from "@/components/EntryList";
 import Profile from "@/components/Profile";
 import Tabs from "@/components/Tabs";
+import { iconFor } from "@/site.config";
 import { getCollection } from "astro:content";
 
 const scraps = await getCollection("scraps");
 const entries = scraps.map((entry) => ({
   href: `/scraps/${entry.id}/`,
+  icon: iconFor(entry.data.tags),
   title: entry.data.title,
-  tags: entry.data.tags,
 }));
 ---
 
 <Layout title="Scraps">
   <Profile />
   <Tabs active="scraps" />
-  {entries.map((entry) => <a href={entry.href}>{entry.title}</a>)}
+  <EntryList entries={entries} />
 </Layout>
