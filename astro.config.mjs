@@ -10,6 +10,8 @@ import tailwindcss from "@tailwindcss/vite";
 import { unified } from "@astrojs/markdown-remark";
 
 import rehypeExternalLinks from "rehype-external-links";
+import rehypeKatex from "rehype-katex";
+import remarkMath from "remark-math";
 
 // https://astro.build/config
 export default defineConfig({
@@ -18,11 +20,13 @@ export default defineConfig({
 
   markdown: {
     processor: unified({
+      remarkPlugins: [remarkMath],
       rehypePlugins: [
         [
           rehypeExternalLinks,
           { target: "_blank", rel: ["noopener", "noreferrer"] },
         ],
+        rehypeKatex,
       ],
     }),
     shikiConfig: { theme: "github-light" },
