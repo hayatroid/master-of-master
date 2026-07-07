@@ -13,6 +13,9 @@ importers:
       "@astrojs/solid-js":
         specifier: ^7.0.1
         version: 7.0.1(@types/node@26.1.0)(esbuild@0.28.1)(jiti@2.7.0)(solid-js@1.9.14)(yaml@2.9.0)
+      "@flowershow/remark-wiki-link":
+        specifier: 3.4.0
+        version: 3.4.0
       "@iconify-json/lucide":
         specifier: ^1.2.116
         version: 1.2.116
@@ -873,6 +876,12 @@ packages:
         integrity: sha512-+CNAzxglkrpNf/kKywqQfk74QjtceuOE7Qm+AF8miRvPF/wmmK5+OJOgVh3AVTT3RP2mH3+FOaxlE5v72owk0A==,
       }
     engines: { node: ^20.19.0 || ^22.13.0 || >=24 }
+
+  "@flowershow/remark-wiki-link@3.4.0":
+    resolution:
+      {
+        integrity: sha512-YeeIwZ630CgBRiVWwM5C8ikAyuT0nLjdjhAZxhOOBgUCA34LCQxFwCkEnA0BySDJr6NQiJjJfRvO/TxBs+deAA==,
+      }
 
   "@humanfs/core@0.19.2":
     resolution:
@@ -5647,6 +5656,13 @@ snapshots:
     dependencies:
       "@eslint/core": 1.2.1
       levn: 0.4.1
+
+  "@flowershow/remark-wiki-link@3.4.0":
+    dependencies:
+      github-slugger: 2.0.0
+      mdast-util-to-markdown: 2.1.2
+      micromark-util-character: 2.1.1
+      micromark-util-symbol: 2.0.1
 
   "@humanfs/core@0.19.2":
     dependencies:

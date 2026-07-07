@@ -53,6 +53,10 @@
     text-decoration: underline;
   }
 
+  .content a.wikilink-new {
+    text-decoration: underline dotted;
+  }
+
   .content > * {
     margin: calc(var(--spacing) * 3) 0;
   }
