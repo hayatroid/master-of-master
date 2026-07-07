@@ -5,6 +5,7 @@
   --color-border: #e5eaec;
   --color-hover: color-mix(in srgb, var(--color-text) 4%, transparent);
   --color-primary: #1d9bf0;
+  --color-surface: color-mix(in srgb, var(--color-text) 6%, transparent);
   --color-text: #0f1419;
   --color-text-muted: color-mix(in srgb, var(--color-text) 60%, transparent);
 
@@ -20,8 +21,118 @@
   --text-body: 15px;
 }
 
+@layer base {
+  a[target="_blank"]::after {
+    content: "\2197";
+    margin-left: calc(var(--spacing) * 0.5);
+    font-size: 0.75rem;
+  }
+}
+
 @layer components {
   .divider {
     border-bottom: calc(var(--spacing) * 0.25) solid var(--color-border);
+  }
+
+  .content a {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .content a:hover {
+    text-decoration: underline;
+  }
+
+  .content a[href^="/"] {
+    color: var(--color-text-muted);
+    text-decoration: underline;
+  }
+
+  .content > * {
+    margin: calc(var(--spacing) * 3) 0;
+  }
+
+  .content > *:first-child {
+    margin-top: 0;
+  }
+
+  .content > *:last-child {
+    margin-bottom: 0;
+  }
+
+  .content h2,
+  .content h3 {
+    margin-top: calc(var(--spacing) * 4);
+  }
+
+  .content h2 {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-weight: 700;
+  }
+
+  .content h3 {
+    font-weight: 700;
+  }
+
+  .content blockquote > :first-child {
+    margin-top: 0;
+  }
+
+  .content blockquote > :last-child {
+    margin-bottom: 0;
+  }
+
+  .content blockquote {
+    padding-left: calc(var(--spacing) * 4);
+    border-left: calc(var(--spacing) * 0.75) solid var(--color-border);
+  }
+
+  .content table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+  }
+
+  .content th,
+  .content td {
+    border: calc(var(--spacing) * 0.25) solid var(--color-border);
+    padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
+  }
+
+  .content thead {
+    background: var(--color-surface);
+  }
+
+  .content pre,
+  .content code {
+    font-family: var(--font-mono);
+  }
+
+  .content pre {
+    padding: calc(var(--spacing) * 4);
+    border-radius: var(--radius-2xl);
+    overflow-x: auto;
+  }
+
+  .content code {
+    padding: calc(var(--spacing) * 0.5) calc(var(--spacing) * 1.5);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface);
+  }
+
+  .content pre code {
+    padding: 0;
+    background: none;
+  }
+
+  .content hr {
+    border-bottom: calc(var(--spacing) * 0.25) solid var(--color-border);
+  }
+
+  .content img {
+    max-width: 100%;
+    height: auto;
   }
 }
