@@ -3,6 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import EntryList from "@/components/EntryList";
 import Profile from "@/components/Profile";
 import Tabs from "@/components/Tabs";
+import { indexKey, compareIndexKeys } from "@/lib/index-key";
 import { iconFor } from "@/site.config";
 import { getCollection } from "astro:content";
 
@@ -12,10 +13,22 @@ const entries = scraps.map((entry) => ({
   icon: iconFor(entry.data.tags),
   title: entry.data.title,
 }));
+const indexKeys = await Promise.all(
+  entries.map((entry) => indexKey(entry.title)),
+);
+const groups = Object.groupBy(entries, (_, i) => indexKeys[i]!);
+const keys = Object.keys(groups).toSorted(compareIndexKeys);
 ---
 
 <Layout title="Scraps">
   <Profile />
   <Tabs active="scraps" />
-  <EntryList entries={entries} />
+  {
+    keys.map((key) => (
+      <section>
+        <h2 class="text-text-muted px-4 pt-4 pb-1 text-xl font-bold">{key}</h2>
+        <EntryList entries={groups[key]!} />
+      </section>
+    ))
+  }
 </Layout>
