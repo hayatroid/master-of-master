@@ -9,6 +9,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 import { unified } from "@astrojs/markdown-remark";
 
+import remarkAlert from "remark-github-blockquote-alert";
 import rehypeExternalLinks from "rehype-external-links";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
@@ -20,7 +21,7 @@ export default defineConfig({
 
   markdown: {
     processor: unified({
-      remarkPlugins: [remarkMath],
+      remarkPlugins: [remarkMath, remarkAlert],
       rehypePlugins: [
         [
           rehypeExternalLinks,

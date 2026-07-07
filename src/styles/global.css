@@ -1,6 +1,11 @@
 @import "tailwindcss";
 
 @theme {
+  --color-alert-caution: #d1242f;
+  --color-alert-important: #8250df;
+  --color-alert-note: #0969da;
+  --color-alert-tip: #1a7f37;
+  --color-alert-warning: #9a6700;
   --color-background: #ffffff;
   --color-border: #e5eaec;
   --color-hover: color-mix(in srgb, var(--color-text) 4%, transparent);
@@ -86,6 +91,76 @@
   .content blockquote {
     padding-left: calc(var(--spacing) * 4);
     border-left: calc(var(--spacing) * 0.75) solid var(--color-border);
+  }
+
+  .content .markdown-alert {
+    padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4);
+    border-left: calc(var(--spacing) * 0.75) solid var(--color-border);
+  }
+
+  .content .markdown-alert > :first-child {
+    margin-top: 0;
+  }
+
+  .content .markdown-alert > :last-child {
+    margin-bottom: 0;
+  }
+
+  .content .markdown-alert > * + * {
+    margin-top: calc(var(--spacing) * 2);
+  }
+
+  .content .markdown-alert-title {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--spacing) * 2);
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1;
+  }
+
+  .content .markdown-alert-title svg {
+    fill: currentcolor;
+  }
+
+  .content .markdown-alert-note {
+    border-left-color: var(--color-alert-note);
+  }
+
+  .content .markdown-alert-note .markdown-alert-title {
+    color: var(--color-alert-note);
+  }
+
+  .content .markdown-alert-tip {
+    border-left-color: var(--color-alert-tip);
+  }
+
+  .content .markdown-alert-tip .markdown-alert-title {
+    color: var(--color-alert-tip);
+  }
+
+  .content .markdown-alert-important {
+    border-left-color: var(--color-alert-important);
+  }
+
+  .content .markdown-alert-important .markdown-alert-title {
+    color: var(--color-alert-important);
+  }
+
+  .content .markdown-alert-warning {
+    border-left-color: var(--color-alert-warning);
+  }
+
+  .content .markdown-alert-warning .markdown-alert-title {
+    color: var(--color-alert-warning);
+  }
+
+  .content .markdown-alert-caution {
+    border-left-color: var(--color-alert-caution);
+  }
+
+  .content .markdown-alert-caution .markdown-alert-title {
+    color: var(--color-alert-caution);
   }
 
   .content table {
