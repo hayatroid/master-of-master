@@ -3,7 +3,10 @@
 @theme {
   --color-background: #ffffff;
   --color-border: #e5eaec;
+  --color-hover: color-mix(in srgb, var(--color-text) 4%, transparent);
+  --color-primary: #1d9bf0;
   --color-text: #0f1419;
+  --color-text-muted: color-mix(in srgb, var(--color-text) 60%, transparent);
 
   --container-layout: 600px;
 
@@ -12,4 +15,10 @@
     "Noto Sans JP", sans-serif;
 
   --text-body: 15px;
+}
+
+@layer components {
+  .divider {
+    border-bottom: calc(var(--spacing) * 0.25) solid var(--color-border);
+  }
 }
