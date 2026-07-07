@@ -2,7 +2,7 @@ import { getCollection } from "astro:content";
 
 const WIKILINK_RE = /\[\[([^\]|]+)(?:\|[^\]]*)?\]\]/g;
 
-function wikilinkTargets(body: string): string[] {
+export function wikilinkTargets(body: string): string[] {
   return [...body.matchAll(WIKILINK_RE)].map((match) => match[1]!.trim());
 }
 

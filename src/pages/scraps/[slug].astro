@@ -1,9 +1,11 @@
 ---
 import Badge from "@/components/Badge";
+import EntryList from "@/components/EntryList";
 import Graph from "@/components/Graph";
 import PageHeader from "@/components/PageHeader";
 import Layout from "@/layouts/Layout.astro";
-import { buildGraph, subgraph } from "@/lib/graph";
+import { buildGraph, subgraph, wikilinkTargets } from "@/lib/graph";
+import { iconFor } from "@/site.config";
 import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
@@ -17,6 +19,16 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 const graph = subgraph(await buildGraph(), entry.id);
+
+const articles = await getCollection("articles");
+const references = articles
+  .filter((article) => wikilinkTargets(article.body ?? "").includes(entry.id))
+  .map((article) => ({
+    href: `/articles/${article.id}/`,
+    icon: iconFor(article.data.tags),
+    title: article.data.title,
+    subtitle: article.data.posted.toISOString().slice(0, 10),
+  }));
 ---
 
 <Layout title={entry.data.title}>
@@ -38,6 +50,14 @@ const graph = subgraph(await buildGraph(), entry.id);
       <Content />
     </div>
   </article>
+  {
+    references.length > 0 && (
+      <section>
+        <h2 class="px-4 py-3 text-xl font-bold">References</h2>
+        <EntryList entries={references} />
+      </section>
+    )
+  }
   <section>
     <h2 class="px-4 py-3 text-xl font-bold">Related Scraps</h2>
     <div class="px-4 pb-3">
