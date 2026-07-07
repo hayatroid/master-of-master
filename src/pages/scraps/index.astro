@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import "@/styles/global.css";
 
 const scraps = await getCollection("scraps");
 const entries = scraps.map((entry) => ({

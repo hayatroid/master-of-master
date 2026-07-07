@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import "@/styles/global.css";
 
 const articles = await getCollection("articles");
 const entries = articles
