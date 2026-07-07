@@ -2,7 +2,9 @@
 import Layout from "@/layouts/Layout.astro";
 import EntryList from "@/components/EntryList";
 import Profile from "@/components/Profile";
+import Graph from "@/components/Graph";
 import Tabs from "@/components/Tabs";
+import { buildGraph } from "@/lib/graph";
 import { indexKey, compareIndexKeys } from "@/lib/index-key";
 import { iconFor } from "@/site.config";
 import { getCollection } from "astro:content";
@@ -13,6 +15,7 @@ const entries = scraps.map((entry) => ({
   icon: iconFor(entry.data.tags),
   title: entry.data.title,
 }));
+const graph = await buildGraph();
 const indexKeys = await Promise.all(
   entries.map((entry) => indexKey(entry.title)),
 );
@@ -23,6 +26,9 @@ const keys = Object.keys(groups).toSorted(compareIndexKeys);
 <Layout title="Scraps">
   <Profile />
   <Tabs active="scraps" />
+  <div class="px-4 py-3">
+    <Graph client:visible graph={graph} />
+  </div>
   {
     keys.map((key) => (
       <section>
