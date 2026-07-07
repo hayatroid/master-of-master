@@ -1,5 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import Profile from "@/components/Profile";
 import Tabs from "@/components/Tabs";
 import { getCollection } from "astro:content";
 
@@ -15,6 +16,7 @@ const entries = articles
 ---
 
 <Layout>
+  <Profile />
   <Tabs active="articles" />
   {entries.map((entry) => <a href={entry.href}>{entry.title}</a>)}
 </Layout>

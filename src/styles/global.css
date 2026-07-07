@@ -14,6 +14,9 @@
     -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
     "Noto Sans JP", sans-serif;
 
+  --spacing-avatar: clamp(48px, 25cqw, 136px);
+  --spacing-avatar-overlap: calc(var(--spacing-avatar) / -2);
+
   --text-body: 15px;
 }
 
