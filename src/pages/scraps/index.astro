@@ -1,15 +1,12 @@
 ---
 import { getCollection } from "astro:content";
 
-const articles = await getCollection("articles");
-const entries = articles
-  .toSorted((a, b) => b.data.posted.valueOf() - a.data.posted.valueOf())
-  .map((entry) => ({
-    href: `/articles/${entry.id}/`,
-    title: entry.data.title,
-    tags: entry.data.tags,
-    posted: entry.data.posted,
-  }));
+const scraps = await getCollection("scraps");
+const entries = scraps.map((entry) => ({
+  href: `/scraps/${entry.id}/`,
+  title: entry.data.title,
+  tags: entry.data.tags,
+}));
 ---
 
 <html lang="en">
