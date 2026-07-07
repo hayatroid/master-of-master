@@ -21,6 +21,8 @@
   },
   "dependencies": {
     "@astrojs/solid-js": "^7.0.1",
+    "@iconify-json/lucide": "^1.2.116",
+    "@iconify/utils": "^3.1.4",
     "@tailwindcss/vite": "^4.3.2",
     "astro": "^7.0.6",
     "solid-js": "^1.9.14",
