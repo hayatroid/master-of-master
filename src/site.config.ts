@@ -13,6 +13,13 @@ export const SITE = {
   ],
 };
 
+export const GISCUS = {
+  repo: "hayatroid/master-of-master",
+  repoId: "R_kgDOTQjLTw",
+  category: "Announcements",
+  categoryId: "DIC_kwDOTQjLT84DA4qG",
+};
+
 const ICONS: Record<string, string> = {
   数学: "sigma",
   応用数理: "square-function",

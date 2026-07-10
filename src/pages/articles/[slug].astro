@@ -1,5 +1,6 @@
 ---
 import Badge from "@/components/Badge";
+import Comments from "@/components/Comments";
 import PageHeader from "@/components/PageHeader";
 import Layout from "@/layouts/Layout.astro";
 import { getCollection, render } from "astro:content";
@@ -38,4 +39,10 @@ const { Content } = await render(entry);
       <Content />
     </div>
   </article>
+  <section>
+    <h2 class="px-4 py-3 text-xl font-bold">Comments</h2>
+    <div class="px-4 pb-3">
+      <Comments />
+    </div>
+  </section>
 </Layout>

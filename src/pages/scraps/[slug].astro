@@ -1,5 +1,6 @@
 ---
 import Badge from "@/components/Badge";
+import Comments from "@/components/Comments";
 import EntryList from "@/components/EntryList";
 import Graph from "@/components/Graph";
 import PageHeader from "@/components/PageHeader";
@@ -58,10 +59,16 @@ const references = articles
       </section>
     )
   }
-  <section>
+  <section class="divider">
     <h2 class="px-4 py-3 text-xl font-bold">Related Scraps</h2>
     <div class="px-4 pb-3">
       <Graph client:visible graph={graph} />
+    </div>
+  </section>
+  <section>
+    <h2 class="px-4 py-3 text-xl font-bold">Comments</h2>
+    <div class="px-4 pb-3">
+      <Comments />
     </div>
   </section>
 </Layout>
