@@ -1,7 +1,7 @@
 export const SITE = {
   title: "title",
   name: "name",
-  url: "https://site.example",
+  url: "https://x.kayama.ooo",
   handle: "@handle",
   bio: "bio",
   avatar: "/avatar.svg",

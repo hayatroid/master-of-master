@@ -1,0 +1,83 @@
+---
+import "@/styles/global.css";
+import Icon from "@/components/Icon";
+import { SITE } from "@/site.config";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const articles = await getCollection("articles");
+  const scraps = await getCollection("scraps");
+
+  return [
+    { params: { slug: "index" }, props: { title: SITE.bio } },
+    { params: { slug: "scraps" }, props: { title: "Scraps" } },
+    ...articles.map((entry) => ({
+      params: { slug: `articles/${entry.id}` },
+      props: { title: entry.data.title, tags: entry.data.tags },
+    })),
+    ...scraps.map((entry) => ({
+      params: { slug: `scraps/${entry.id}` },
+      props: { title: entry.data.title, tags: entry.data.tags },
+    })),
+  ];
+}
+
+interface Props {
+  title: string;
+  tags?: string[];
+}
+
+const { title, tags } = Astro.props;
+---
+
+<html lang={SITE.lang}>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body
+    class="bg-background text-text"
+    style="font-family: 'Noto Sans JP', sans-serif"
+  >
+    <div class="flex h-dvh w-full flex-col p-16">
+      <div class="flex items-center gap-6">
+        <img
+          src={SITE.avatar}
+          class="border-border size-36 rounded-full border"
+        />
+        <div class="flex flex-col gap-3 pb-3">
+          <span class="text-6xl leading-none font-bold">{SITE.name}</span>
+          <span class="text-text-muted text-5xl leading-none"
+            >{SITE.handle}</span
+          >
+        </div>
+      </div>
+      <div class="mt-10 line-clamp-2 text-6xl leading-tight font-bold">
+        {title}
+      </div>
+      {
+        tags && tags.length > 0 && (
+          <div class="text-primary mt-6 flex gap-4 text-5xl">
+            {tags.map((tag) => (
+              <span>#{tag}</span>
+            ))}
+          </div>
+        )
+      }
+      <div
+        class="text-text-muted mt-auto flex w-full items-center justify-between"
+      >
+        <Icon name="message-circle" size={48} />
+        <Icon name="repeat-2" size={48} />
+        <Icon name="heart" size={48} />
+        <Icon name="bookmark" size={48} />
+        <Icon name="share" size={48} />
+      </div>
+    </div>
+  </body>
+</html>

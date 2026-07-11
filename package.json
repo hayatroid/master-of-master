@@ -22,6 +22,7 @@
   "dependencies": {
     "@astrojs/markdown-remark": "^7.2.1",
     "@astrojs/solid-js": "^7.0.1",
+    "@cloudflare/puppeteer": "^1.1.0",
     "@flowershow/remark-wiki-link": "3.4.0",
     "@iconify-json/lucide": "^1.2.116",
     "@iconify/utils": "^3.1.4",

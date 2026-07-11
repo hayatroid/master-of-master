@@ -1,7 +1,8 @@
 {
   "name": "master-of-master",
   "compatibility_date": "2026-07-08",
-  "assets": {
-    "directory": "./dist",
-  },
+  "compatibility_flags": ["nodejs_compat"],
+  "main": "src/worker.ts",
+  "browser": { "binding": "BROWSER" },
+  "assets": { "directory": "./dist", "binding": "ASSETS" },
 }
