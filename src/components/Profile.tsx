@@ -4,11 +4,20 @@ import Icon from "./Icon";
 const Profile = () => {
   return (
     <header class="@container">
-      <div class="bg-border h-50" />
-      <img
-        class="mt-avatar-overlap h-avatar w-avatar border-background ml-4 rounded-full border-4 object-cover"
-        src={SITE.avatar}
-      />
+      {SITE.banner ? (
+        <img class="aspect-3/1 w-full object-cover" src={SITE.banner} alt="" />
+      ) : (
+        <div class="bg-border aspect-3/1 w-full" />
+      )}
+      {SITE.avatar ? (
+        <img
+          class="mt-avatar-overlap h-avatar w-avatar border-background relative ml-4 rounded-full border-4 object-cover"
+          src={SITE.avatar}
+          alt=""
+        />
+      ) : (
+        <div class="mt-avatar-overlap h-avatar w-avatar border-background bg-border relative ml-4 rounded-full border-4" />
+      )}
       <div class="flex flex-col gap-3 px-4 pt-3 pb-4">
         <div class="flex flex-col gap-1">
           <p class="text-xl font-bold">{SITE.name}</p>

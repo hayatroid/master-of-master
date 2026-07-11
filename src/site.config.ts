@@ -1,10 +1,23 @@
-export const SITE = {
+interface Site {
+  title: string;
+  name: string;
+  url: string;
+  handle: string;
+  bio: string;
+  avatar?: string;
+  banner?: string;
+  lang: string;
+  meta: { icon: string; label: string; href?: string }[];
+}
+
+export const SITE: Site = {
   title: "title",
   name: "name",
   url: "https://site.example",
   handle: "@handle",
   bio: "bio",
   avatar: "/avatar.svg",
+  banner: "/banner.svg",
   lang: "en",
   meta: [
     { icon: "map-pin", label: "location" },
