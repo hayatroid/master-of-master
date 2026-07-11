@@ -84,6 +84,16 @@
     font-weight: 700;
   }
 
+  .content ol {
+    padding-left: calc(var(--spacing) * 4);
+    list-style: decimal;
+  }
+
+  .content ul {
+    padding-left: calc(var(--spacing) * 4);
+    list-style: disc;
+  }
+
   .content blockquote > :first-child {
     margin-top: 0;
   }
