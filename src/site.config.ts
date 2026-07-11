@@ -11,18 +11,21 @@ interface Site {
 }
 
 export const SITE: Site = {
-  title: "title",
-  name: "name",
+  title: "X",
+  name: "yachi8000",
   url: "https://x.kayama.ooo",
-  handle: "@handle",
-  bio: "bio",
+  handle: "@yachi8000",
+  bio: "自分で調べろｶｽ",
   avatar: "/avatar.svg",
-  banner: "/banner.svg",
-  lang: "en",
+  lang: "ja",
   meta: [
-    { icon: "map-pin", label: "location" },
-    { icon: "link", label: "site.example", href: "https://site.example" },
-    { icon: "calendar", label: "joined" },
+    { icon: "map-pin", label: "大岡山" },
+    {
+      icon: "link",
+      label: "過去問",
+      href: "https://admissions.isct.ac.jp/ja/013/graduate/examination-questions",
+    },
+    { icon: "calendar", label: "2016年度から解き始めています" },
   ],
 };
 
