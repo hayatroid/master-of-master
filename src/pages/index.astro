@@ -3,7 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import EntryList from "@/components/EntryList";
 import Profile from "@/components/Profile";
 import Tabs from "@/components/Tabs";
-import { iconFor } from "@/site.config";
+import { iconFor, SITE } from "@/site.config";
 import { getCollection } from "astro:content";
 
 const articles = await getCollection("articles");
@@ -14,7 +14,9 @@ const entries = articles
     icon: iconFor(entry.data.tags),
     title: entry.data.title,
     subtitle: entry.data.posted.toISOString().slice(0, 10),
-  }));
+    pinned: entry.id === SITE.pinned,
+  }))
+  .toSorted((a, b) => Number(b.pinned) - Number(a.pinned));
 ---
 
 <Layout>

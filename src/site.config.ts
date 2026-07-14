@@ -6,6 +6,7 @@ interface Site {
   bio: string;
   avatar?: string;
   banner?: string;
+  pinned?: string;
   lang: string;
   meta: { icon: string; label: string; href?: string }[];
 }
