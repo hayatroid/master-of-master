@@ -193,6 +193,7 @@
   .content td {
     border: calc(var(--spacing) * 0.25) solid var(--color-border);
     padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
+    white-space: nowrap;
   }
 
   .content thead {

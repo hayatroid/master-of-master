@@ -18,6 +18,7 @@ export const SITE: Site = {
   handle: "@yachi8000",
   bio: "自分で調べろｶｽ",
   avatar: "/avatar.svg",
+  pinned: "mcs-all",
   lang: "ja",
   meta: [
     { icon: "map-pin", label: "大岡山" },
