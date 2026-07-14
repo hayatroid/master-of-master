@@ -224,4 +224,10 @@
     max-width: 100%;
     height: auto;
   }
+
+  .content iframe {
+    aspect-ratio: 16 / 9;
+    height: auto;
+    width: 100%;
+  }
 }
