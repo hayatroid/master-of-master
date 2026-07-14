@@ -177,6 +177,11 @@
     color: var(--color-alert-caution);
   }
 
+  .content .katex-display {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
   .content table {
     display: block;
     max-width: 100%;
