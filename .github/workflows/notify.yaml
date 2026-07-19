@@ -25,14 +25,16 @@ jobs:
               .flatMap((f) => f.filename.match(/^src\/content\/articles\/(.+)\.md$/)?.slice(1) ?? []);
             for (const slug of slugs) {
               const url = `https://x.kayama.ooo/articles/${slug}`;
-              for (let i = 0; ; i++) {
-                if ((await fetch(url, { method: "HEAD" })).ok) {
-                  break;
+              for (const target of [url, `https://x.kayama.ooo/og/articles/${slug}.png`]) {
+                for (let i = 0; ; i++) {
+                  if ((await fetch(target)).ok) {
+                    break;
+                  }
+                  if (i >= 60) {
+                    throw new Error(`deploy timeout: ${target}`);
+                  }
+                  await new Promise((r) => setTimeout(r, 10_000));
                 }
-                if (i >= 60) {
-                  throw new Error(`deploy timeout: ${url}`);
-                }
-                await new Promise((r) => setTimeout(r, 10_000));
               }
               const message = `記事を投稿しました：\n${url}`;
               const res = await fetch(`https://q.trap.jp/api/v3/webhooks/${process.env.WEBHOOK_ID}`, {

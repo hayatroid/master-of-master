@@ -29,9 +29,13 @@ export default {
     const browser = await puppeteer.launch(env.BROWSER);
     const page = await browser.newPage();
     await page.setViewport({ width: 1200, height: 630 });
-    await page.goto(new URL(`/og/${match[1]}`, url.origin).href, {
+    const res = await page.goto(new URL(`/og/${match[1]}`, url.origin).href, {
       waitUntil: "networkidle0",
     });
+    if (!res?.ok()) {
+      await browser.close();
+      return new Response("og render failed", { status: 503 });
+    }
     await page.evaluateHandle("document.fonts.ready");
     const png = await page.screenshot();
     await browser.close();
