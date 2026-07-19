@@ -24,7 +24,17 @@ jobs:
               .filter((f) => f.status === "added")
               .flatMap((f) => f.filename.match(/^src\/content\/articles\/(.+)\.md$/)?.slice(1) ?? []);
             for (const slug of slugs) {
-              const message = `記事を投稿しました：\nhttps://x.kayama.ooo/articles/${slug}`;
+              const url = `https://x.kayama.ooo/articles/${slug}`;
+              for (let i = 0; ; i++) {
+                if ((await fetch(url, { method: "HEAD" })).ok) {
+                  break;
+                }
+                if (i >= 60) {
+                  throw new Error(`deploy timeout: ${url}`);
+                }
+                await new Promise((r) => setTimeout(r, 10_000));
+              }
+              const message = `記事を投稿しました：\n${url}`;
               const res = await fetch(`https://q.trap.jp/api/v3/webhooks/${process.env.WEBHOOK_ID}`, {
                 method: "POST",
                 headers: {
