@@ -1,0 +1,39 @@
+name: Notify
+
+on:
+  push:
+    branches: [main]
+    paths: [src/content/articles/**]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v9
+        env:
+          SECRET: ${{ secrets.TRAQ_WEBHOOK_SECRET }}
+          WEBHOOK_ID: ${{ secrets.TRAQ_WEBHOOK_ID }}
+        with:
+          script: |
+            const { createHmac } = require("node:crypto");
+            const { data } = await github.rest.repos.compareCommitsWithBasehead({
+              ...context.repo,
+              basehead: `${context.payload.before}...${context.payload.after}`,
+            });
+            const slugs = data.files
+              .filter((f) => f.status === "added")
+              .flatMap((f) => f.filename.match(/^src\/content\/articles\/(.+)\.md$/)?.slice(1) ?? []);
+            for (const slug of slugs) {
+              const message = `記事を投稿しました：\nhttps://x.kayama.ooo/articles/${slug}`;
+              const res = await fetch(`https://q.trap.jp/api/v3/webhooks/${process.env.WEBHOOK_ID}`, {
+                method: "POST",
+                headers: {
+                  "Content-Type": "text/plain; charset=utf-8",
+                  "X-TRAQ-Signature": createHmac("sha1", process.env.SECRET).update(message).digest("hex"),
+                },
+                body: message,
+              });
+              if (!res.ok) {
+                throw new Error(`webhook failed: ${res.status}`);
+              }
+            }
