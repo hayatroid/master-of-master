@@ -13,11 +13,11 @@ interface Site {
 
 export const SITE: Site = {
   title: "X",
-  name: "yachi8000",
+  name: "諸々",
   url: "https://x.kayama.ooo",
-  handle: "@yachi8000",
-  bio: "自分で調べろｶｽ",
-  avatar: "/avatar.svg",
+  handle: "@NuruwoYCY",
+  bio: "色々に対抗して、諸々",
+  avatar: "/avatar.png",
   pinned: "mcs-all",
   lang: "ja",
   meta: [
