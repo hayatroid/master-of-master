@@ -42,6 +42,7 @@ const ICONS: Record<string, string> = {
   数学: "sigma",
   応用数理: "square-function",
   計算機科学: "cpu",
+  日常: "coffee",
 };
 
 export function iconFor(tags: string[]): string {
